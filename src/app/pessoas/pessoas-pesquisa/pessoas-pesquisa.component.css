@@ -1,0 +1,12 @@
+.col-status-pessoa {
+  text-align: left;
+}
+
+.col-status-pessoa a {
+  color: black;
+}
+
+.col-status-pessoa a:hover {
+  color: #000;
+  text-decoration: underline;
+}
