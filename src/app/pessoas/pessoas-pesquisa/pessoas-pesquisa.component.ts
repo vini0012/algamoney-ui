@@ -1,12 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {PessoaFiltro, PessoaService} from "../pessoa.service";
-import {ConfirmationService, LazyLoadEvent} from "primeng/components/common/api";
-import {Table} from "primeng/components/table/table";
-import {ToastyService} from "ng2-toasty";
-import {ErrorHandlerService} from "../../core/error-handler.service";
-import {Pessoa} from "../pessoa";
-import {Title} from "@angular/platform-browser";
-import {AuthService} from "../../seguranca/auth.service";
+import {PessoaFiltro, PessoaService} from '../pessoa.service';
+import {ConfirmationService, LazyLoadEvent, MessageService} from 'primeng/components/common/api';
+import {Table} from 'primeng/components/table/table';
+import {ErrorHandlerService} from '../../core/error-handler.service';
+import {Pessoa} from '../pessoa';
+import {Title} from '@angular/platform-browser';
+import {AuthService} from '../../seguranca/auth.service';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -21,7 +20,7 @@ export class PessoasPesquisaComponent implements OnInit{
 
   constructor(private pessoaService: PessoaService,
               private errorHandler: ErrorHandlerService,
-              private toasty: ToastyService,
+              private messageService: MessageService,
               private confirmation: ConfirmationService,
               private title: Title,
               private auth: AuthService) { }
@@ -62,7 +61,7 @@ export class PessoasPesquisaComponent implements OnInit{
     this.pessoaService.excluir(codigo)
       .subscribe( responseSucesso => {
         this.grid.reset();
-        this.toasty.success('Pessoa excluída com sucesso!');
+          this.messageService.add({severity: 'success', detail: 'Pessoa excluída com sucesso!'});
       },
         responseErro => {
           this.errorHandler.handle(responseErro);
@@ -78,7 +77,7 @@ export class PessoasPesquisaComponent implements OnInit{
         const acao = novoStatus ? 'ativada' : 'desativada';
 
         pessoa.ativo = novoStatus;
-        this.toasty.success(`Pessoa ${acao} com sucesso!`);
+          this.messageService.add({severity: 'success', detail: `Pessoa ${acao} com sucesso!`});
       },
         responseErro => {
           this.errorHandler.handle(responseErro)

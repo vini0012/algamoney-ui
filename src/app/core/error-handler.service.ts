@@ -1,15 +1,14 @@
-import { Injectable } from '@angular/core';
-import {ToastyService} from "ng2-toasty";
-import {error} from "util";
-import {Router} from "@angular/router";
-import {NotAuthenticatedError} from "../seguranca/money-http-interceptor";
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {NotAuthenticatedError} from '../seguranca/money-http-interceptor';
+import {MessageService} from 'primeng/api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorHandlerService {
 
-  constructor(private toasty: ToastyService,
+  constructor(private messageService: MessageService,
               private router: Router) { }
 
   handle(errorResponse: any) {
@@ -44,7 +43,7 @@ export class ErrorHandlerService {
       console.error('Ocorreu um erro', errorResponse);
     }
 
-    this.toasty.error(msg);
+    this.messageService.add({severity: 'error', detail: msg});
   }
 
 }

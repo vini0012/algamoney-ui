@@ -1,13 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {LancamentoFiltro, LancamentoService} from "../lancamento.service";
-import {ConfirmationService, LazyLoadEvent} from "primeng/components/common/api";
-import {Table} from "primeng/components/table/table";
-import {Lancamento} from "../lancamento";
-import {ToastyService} from "ng2-toasty";
-import {ErrorHandlerService} from "../../core/error-handler.service";
-import {Title} from "@angular/platform-browser";
-import {AuthService} from "../../seguranca/auth.service";
-import {Page} from "../page";
+import {LancamentoFiltro, LancamentoService} from '../lancamento.service';
+import {ConfirmationService, LazyLoadEvent, MessageService} from 'primeng/components/common/api';
+import {Table} from 'primeng/components/table/table';
+import {Lancamento} from '../lancamento';
+import {ErrorHandlerService} from '../../core/error-handler.service';
+import {Title} from '@angular/platform-browser';
+import {AuthService} from '../../seguranca/auth.service';
+import {Page} from '../page';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -21,7 +20,7 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   constructor(private lancamentoService: LancamentoService,
               private errorHandler: ErrorHandlerService,
-              private toasty: ToastyService,
+              private messageService: MessageService,
               private confirmation: ConfirmationService,
               private title: Title,
               private auth: AuthService) { }
@@ -62,7 +61,7 @@ export class LancamentosPesquisaComponent implements OnInit {
     this.lancamentoService.excluir(codigo)
       .subscribe( responseSucesso => {
           this.grid.reset();
-          this.toasty.success('Lançamento excluído com sucesso!');
+          this.messageService.add({severity: 'success', detail: 'Lançamento excluído com sucesso!'});
         },
         responseErro => {
           this.errorHandler.handle(responseErro);

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../auth.service";
-import {ErrorHandlerService} from "../../core/error-handler.service";
-import {map} from "rxjs/operators";
-import {Route, Router} from "@angular/router";
+import {AuthService} from '../auth.service';
+import {ErrorHandlerService} from '../../core/error-handler.service';
+import {map} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -29,7 +29,7 @@ export class LoginFormComponent implements OnInit {
       }))
       .subscribe(
         response => {
-         this.router.navigate(['/lancamentos']);
+          this.router.navigate(['/dashboard']);
         },
         erro => {
           if (erro.error.error === 'invalid_grant') {

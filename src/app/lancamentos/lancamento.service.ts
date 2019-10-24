@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import * as moment from 'moment';
-import {map} from "rxjs/operators";
-import {Lancamento} from "./lancamento";
-import {Page} from "./page";
+import {map} from 'rxjs/operators';
+import {Lancamento} from './lancamento';
+import {Page} from './page';
 
 export class LancamentoFiltro {
   descricao: string;
@@ -22,6 +22,10 @@ export class LancamentoService {
   lancamentosUrl = 'http://localhost:8080/lancamentos';
 
   constructor(private http: HttpClient) {
+  }
+
+  urlUploadAnexo(): string {
+    return `${this.lancamentosUrl}/anexo`;
   }
 
   pesquisar(filtro: LancamentoFiltro): Observable<Page<Lancamento>> {

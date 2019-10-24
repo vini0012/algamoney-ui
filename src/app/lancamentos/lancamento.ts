@@ -1,5 +1,5 @@
-import {Categoria} from "../categorias/categoria";
-import {Pessoa} from "../pessoas/pessoa";
+import {Categoria} from '../categorias/categoria';
+import {Pessoa} from '../pessoas/pessoa';
 
 export class Lancamento {
   codigo : number;
@@ -11,4 +11,6 @@ export class Lancamento {
   tipo = 'RECEITA';
   categoria = new Categoria();
   pessoa = new Pessoa();
+  anexo: string;
+  urlAnexo: string;
 }
