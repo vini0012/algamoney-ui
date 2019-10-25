@@ -33,7 +33,7 @@ export class DashboardService {
 
   private converterStringsParaDatas(dados: Array<any>) {
     for (const dado of dados) {
-      dado.dia = moment(dado.dia, 'YYYY-MM-DD').toDate();
+      dado.dia = moment(dado.dia, 'DD-MM-YYYY').toDate();
     }
   }
 }

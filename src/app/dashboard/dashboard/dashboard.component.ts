@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
           const valor = dataset.data[tooltipItem.index];
           const label = dataset.label ? (dataset.label + ': ') : '';
 
-          return label + this.decimalPipe.transform(valor, '1.2-2');
+          return label + this.decimalPipe.transform(valor, '1.2-2', 'pt');
         }
       }
     }
